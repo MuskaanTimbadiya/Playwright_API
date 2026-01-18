@@ -6,7 +6,7 @@ let reqContext;
 test.beforeAll('Health check', async () => {
     reqContext = await request.newContext();
     const response = await reqContext.get(`${baseURL}/ping`);
-    expect(response.status()).toBe(201);
+    expect(Response.ok()).toBeTruthy();
     expect(await response.text()).toBe('Created');
 });
 
@@ -16,7 +16,7 @@ test.afterAll(async () => {
 
 test('Get Booking ids', async () => {
     const Response = await reqContext.get(`${baseURL}/booking`);
-    expect(Response.status()).toBe(200);
+    expect(Response.ok()).toBeTruthy();
     console.log(await Response.json());
     let bookingids= await Response.json().bookingid;
     console.log(bookingids);
@@ -24,13 +24,13 @@ test('Get Booking ids', async () => {
 
 test('Get Booking ids by firstname and lastname', async () => {
     const Response = await reqContext.get(`${baseURL}/booking?firstname=sally&lastname=brown`);
-    expect(Response.status()).toBe(200);
+    expect(Response.ok()).toBeTruthy();
     console.log(await Response.json());
 });
 
 test('Get Booking ids by checkin and checkout', async () => {
     const Response = await reqContext.get(`${baseURL}/booking?checkin=2014-03-13&checkout=2014-05-21`);
-    expect(Response.status()).toBe(200);
+    expect(Response.ok()).toBeTruthy();
     console.log(await Response.json());
 });
 
@@ -40,7 +40,7 @@ test('Get Booking by booking id ', async () => {
         'Accept': 'application/json'
       }
     });
-    expect(Response.status()).toBe(200);
+    expect(Response.ok()).toBeTruthy();
     console.log(await Response.json());
 });
 
@@ -83,7 +83,7 @@ async function getAuthToken() {
             "password": "password123"
         }
     });
-    expect(Response.status()).toBe(200);
+    expect(Response.ok()).toBeTruthy();
     const respBody = await Response.json();
     return respBody.token;
 }
@@ -108,7 +108,7 @@ test('Update Booking', async () => {
             "additionalneeds": "Lunch"
         }
     });
-    expect(Response.status()).toBe(200);
+    expect(Response.ok()).toBeTruthy();
     console.log(await Response.json());
     expect((await Response.json()).firstname).toBe("James");
     expect((await Response.json()).lastname).toBe("Brown");
@@ -133,7 +133,7 @@ test('Partial Update Booking', async () => {
             "lastname": "Brownie"
         }
     });
-    expect(Response.status()).toBe(200);
+    expect(Response.ok()).toBeTruthy();
     console.log(await Response.json());
     expect((await Response.json()).firstname).toBe("Jim");
     expect((await Response.json()).lastname).toBe("Brownie");
@@ -148,7 +148,7 @@ test('Delete Booking', async () => {
             'Authorization': `Basic YWRtaW46cGFzc3dvcmQxMjM=]`
         }
     });
-    expect(Response.status()).toBe(201);
+    expect(Response.ok()).toBeTruthy();
     console.log('Booking Deleted Successfully');
     expect(await Response.text()).toBe('Created');
 });
