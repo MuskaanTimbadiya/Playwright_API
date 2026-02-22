@@ -53,6 +53,13 @@ Generated\ Files/
 [Bb]uild[Ll]og.*
 *.trx
 
+# Node.js
+node_modules/
+npm-debug.log*
+package-lock.json
+.env
+.playwright/
+
 # NUnit
 *.VisualState.xml
 TestResult.xml
