@@ -1,6 +1,6 @@
 # 🚀 Playwright API Automation Framework
 
-[![Tests](https://github.com/<username>/<repo>/actions/workflows/playwright.yml/badge.svg)](https://github.com/<username>/<repo>/actions/workflows/playwright.yml)
+[![Tests](https://github.com/MuskaanTimbadiya/Playwright_API/actions/workflows/playwright.yml/badge.svg)](https://github.com/MuskaanTimbadiya/Playwright_API/actions/workflows/playwright.yml)
 [![Node Version](https://img.shields.io/badge/node-%3E%3D18-blue.svg)](https://nodejs.org/)
 
 A scalable API automation framework built using [Playwright Test](https://playwright.dev/docs/intro), designed to support reliable testing, faster feedback cycles, and maintainable architecture for Agile teams.
