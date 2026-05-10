@@ -4,6 +4,7 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+    types: [opened, synchronize, reopened]
 jobs:
   test:
     timeout-minutes: 60
@@ -25,3 +26,18 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
+  
+  automated-review:
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event_name == 'pull_request'
+    permissions:
+      pull-requests: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Request Copilot Code Review
+        uses: github/copilotx-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}

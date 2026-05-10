@@ -45,3 +45,23 @@ test.afterAll(async () => {
     const response = await reqContext.delete(`${baseURL}/Activities/30`);
     expect(response.status()).toBe(200);
   });
+
+  test('Update an activity', async () => {
+    const response = await reqContext.put(`${baseURL}/Activities/1`, {
+      data: {
+        id: 1,
+        title: 'Updated Activity Title',
+        dueDate: '2026-05-20T12:00:41.758Z',
+        completed: false,
+      }
+    });
+    expect(response.status()).toBe(200);
+    const body = await response.json();
+    expect(body.title).toBe('Updated Activity Title');
+    console.log('Activity updated successfully:', body);
+  });
+
+  test('Get activity with invalid ID should return 404', async () => {
+    const response = await reqContext.get(`${baseURL}/Activities/99999`);
+    expect(response.status()).toBeGreaterThanOrEqual(404);
+  });
